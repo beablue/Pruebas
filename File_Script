@@ -7,7 +7,7 @@
 
 YEAR=$(date +"%Y")
 CREATED=$(date +"%m-%d-%Y")
-FILE=$YEAR_PHOTOS_$CREATED
+FILE="($YEAR)_PHOTOS_Created($CREATED)"
 
 cd ~/Pictures
 mkdir $FILE
@@ -15,18 +15,13 @@ cd $FILE
 mkdir Month_1
 cd Month_1
 mkdir Family Curiosities ImportantF
-function copy(i) {
-  #Copy folders with the same jerarquie
-  if [$i < 13]
-    cp Month_1 Month_{$((1 + $i))}
-  fi
-}
+cd ..
+mkdir Month_{2..12} && for i in Month_{2..12}; do cp -r Month_1/* "$i"; done
 
 # Test: If there is a file ImportantF in the
-  direction ~/Pictures/$YEAR_PHOTOS_$CREATED/Month_7/
 
-cd ~/Pictures/$FILE/Month_7
-if [open ImportantF = true]
+cd Month_7
+if [ -d ImportantF ]; then
   echo "Directory completed"
 else
   echo "Template failed"
