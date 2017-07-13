@@ -7,20 +7,25 @@
 
 YEAR=$(date +"%Y")
 CREATED=$(date +"%m-%d-%Y")
-FILE="($YEAR)_PHOTOS_Created($CREATED)"
+M_FILE="($YEAR)_PHOTOS_Created($CREATED)"
+FILE="Month_"
 
-cd ~/Pictures
+
+
+cd ~/tmp/Template
 mkdir $FILE
 cd $FILE
-mkdir Month_1
-cd Month_1
 mkdir Family Curiosities ImportantF
-cd ..
-mkdir Month_{2..12} && for i in Month_{2..12}; do cp -r Month_1/* "$i"; done
+cd ~/Pictures
+mkdir $M_FILE
+cd $M_FILE
+mkdir $FILE{1..12} && for i in $FILE{1..12}; do cp -r ~/tmp/Template/$FILE "$i"; done
 
-# Test: If there is a file ImportantF in the
 
-cd Month_7
+
+# Test: If there is a file ImportantF in the folder_x
+
+cd ~/Pictures/$M_FILE/$FILE"7"
 if [ -d ImportantF ]; then
   echo "Directory completed"
 else
