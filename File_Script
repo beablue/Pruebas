@@ -9,17 +9,19 @@ YEAR=$(date +"%Y")
 CREATED=$(date +"%m-%d-%Y")
 M_FILE="($YEAR)_PHOTOS_Created($CREATED)"
 FILE="Month_"
+temp="/tmp/Template"
 
 
 
-cd ~/tmp/Template
+cd $temp
 mkdir $FILE
 cd $FILE
 mkdir Family Curiosities ImportantF
 cd ~/Pictures
 mkdir $M_FILE
 cd $M_FILE
-mkdir $FILE{1..12} && for i in $FILE{1..12}; do cp -r ~/tmp/Template/$FILE "$i"; done
+mkdir "$FILE"{1..12} && for i in "$FILE"{1..12}; do cp -R "$temp"/$FILE/ "$i"; done
+rm -R $temp/$FILE
 
 
 
